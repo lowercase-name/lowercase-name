@@ -1,0 +1,198 @@
+@layer reset {
+    :where(html) {
+        interpolate-size: allow-keywords;
+        color-scheme: light dark;
+        hyphens: auto;
+    }
+
+    /* Box sizing rules */
+    :where(*,
+        *::before,
+        *::after) {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+
+    :where(:focus-visible:not(iframe)) {
+        --_fr_c1: oklch(from currentcolor round(1.145 - l) 0 h);
+        --_fr_c2: oklch(from var(--_fr_c1) calc(1 - l) 0 h);
+        --_fr_s: max(.2ch, 3px);
+
+        box-shadow: 0 0 0 calc(var(--_fr_s)*3) var(--_fr_c1) !important;
+        outline: var(--_fr_s) solid var(--_fr_c2) !important;
+        outline-offset: var(--_fr_s) !important;
+    }
+
+    /* Scroll behavior */
+    :where(html:focus-within) {
+        scroll-behavior: smooth;
+    }
+
+    /* Body defaults */
+
+    @property --100cqi {
+        syntax: '<length>';
+        initial-value: 0px;
+        inherits: true;
+    }
+
+    :where(body) {
+        block-size: fit-content;
+        container-type: inline-size;
+        line-height: 1.5;
+        min-block-size: 100vb;
+        min-block-size: 100dvb;
+        min-inline-size: 300px;
+        --100cqi: 100cqi;
+    }
+
+    /* List styles */
+    :where(ul[role='list'], ol[role='list']) {
+        list-style: none;
+    }
+
+    /* Padding for lists */
+    :where([role='list'], hr) {
+        margin-block: 0;
+        margin-inline: 0;
+        padding: 0;
+        padding-block: 0;
+        padding-inline: 0;
+    }
+
+    /* Image styles */
+    :where(img, picture, svg, canvas) {
+        background-repeat: no-repeat;
+        background-size: cover;
+        block-size: auto;
+        block-size: fit-content;
+        font-style: italic;
+        margin-inline: auto;
+        max-inline-size: 100%;
+        shape-margin: 0.75rem;
+        vertical-align: middle;
+    }
+
+    /* Button styles */
+    :where(button) {
+        /* Unset all the styles in one line 🤯 */
+        all: unset;
+        /* Restore some important stuff */
+        box-sizing: border-box;
+
+        &:focus-visible {
+            outline: revert;
+        }
+    }
+
+    /* Inherit fonts for inputs and buttons */
+    :where(button, input, select, textarea) {
+        color: inherit;
+        font: inherit;
+    }
+
+    /* Textarea styles */
+    :where(textarea) {
+        resize: vertical;
+        resize: block;
+    }
+
+    /* Textarea height */
+    :where(textarea:not([rows])) {
+        min-block-size: 10em;
+    }
+
+    /* Cursor styles */
+    :where(button, label, select, summary, [role='button'], [role='option']) {
+        cursor: pointer;
+    }
+
+    :where(:target) {
+        scroll-margin-block-start: 2rem
+    }
+
+    :where(:focus) {
+        scroll-margin-block-end: 4vb
+    }
+
+    /* Reduced motion */
+    @media (prefers-reduced-motion: reduce) {
+        html:focus-within {
+            scroll-behavior: auto;
+        }
+
+        :where(*,
+            ::after,
+            ::before) {
+            animation-duration: 0.01ms;
+            animation-iteration-count: 1;
+            scroll-behavior: auto;
+            transition-duration: 0.01ms;
+        }
+    }
+
+    :where(html) {
+        -webkit-font-smoothing: antialiased;
+        -moz-text-size-adjust: none;
+        -webkit-text-size-adjust: none;
+        text-size-adjust: none;
+        font-family:
+            system-ui,
+            'Segoe UI',
+            Roboto,
+            Helvetica,
+            Arial,
+            sans-serif,
+            'Apple Color Emoji',
+            'Segoe UI Emoji';
+        text-rendering: geometricPrecision;
+    }
+
+    :where(strong, b) {
+        font-weight: bolder;
+    }
+
+    :where(*) {
+        text-wrap: pretty;
+    }
+
+    :where(html.translated-rtl) {
+        direction: rtl;
+    }
+
+    :where(h1, h2, h3, h4) {
+        text-wrap: balance;
+    }
+
+    :where(body, h1, h2, h3, h4, p, figure, blockquote, dl, dd) {
+        margin: 0;
+    }
+
+    :where(sub, sup) {
+        font-size: 75%;
+        line-height: 0;
+        position: relative;
+        vertical-align: baseline;
+    }
+
+    :where(sub) {
+        bottom: -0.25em;
+    }
+
+    :where(sup) {
+        top: -0.5em;
+    }
+
+    :where(a:not([class])) {
+        text-decoration-skip-ink: auto;
+    }
+
+    :where(hr) {
+        background: unset;
+        border: unset;
+        color: unset;
+        height: 1px;
+        margin: 0;
+    }
+}

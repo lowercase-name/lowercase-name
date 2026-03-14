@@ -1,0 +1,29 @@
+---
+import Base from "../../layouts/base.astro";
+
+import FormattedDate from "../../components/dates.astro";
+import Footer from "../../components/footer.astro";
+
+import { slug } from "../../util/slug";
+
+const posts = await slug("blog");
+const sortedPosts = posts.sort(
+    (a: any, b: any) => b.data.date.getTime() - a.data.date.getTime(),
+);
+---
+
+<Base>
+    <main>
+        <nav aria-label="blog posts">
+            {
+                sortedPosts.map((post: any) => (
+                    <p>
+                        <time datetime={post.data.date.toISOString()}>{post.data.goodDate}</time>
+                        <a href={`/blog/${post.id}`}>{post.data.title}</a>
+                    </p>
+                ))
+            }
+        </nav>
+    </main>
+    <Footer />
+</Base>

@@ -1,0 +1,106 @@
+<script is:inline>
+    const colors = [
+        {
+            dark: `#000`,
+            light: `#fff`,
+            name: `literally just black and white`,
+        },
+        {
+            dark: `#062b5b`,
+            light: `#f6f992`,
+            name: `walmart in an anime with washed out colors`,
+        },
+        {
+            dark: `#2d2617`,
+            light: `#f9f120`,
+            name: `worn-out caution tape`,
+        },
+        {
+            dark: `#420c65`,
+            light: `#faff70`,
+            name: `wario`,
+        },
+        {
+            dark: `#980364`,
+            light: `#faffff`,
+            name: `nice homemade jam`,
+        },
+        {
+            dark: `#1f2937`,
+            light: `#a0ffc3`,
+            name: `legally distinct spotify`,
+        },
+        {
+            dark: `#182297`,
+            light: `#feffed`,
+            name: `commodorn't 64`,
+        },
+        {
+            dark: `#590949`,
+            light: `#a8fee9`,
+            name: `christmas but kinda evil and twisted`,
+        },
+        {
+            dark: `#265b4d`,
+            light: `#fff`,
+            name: `mid-tier coffee packaging at okay roasting company`,
+        },
+        {
+            dark: `#0e5382`,
+            light: `#f7feed`,
+            name: `niche european luxury chocolate`,
+        },
+        {
+            dark: `#070d20`,
+            light: `#e1ecbe`,
+            name: `medical terminal in a horror game`,
+        },
+        {
+            dark: `#5f2e2d`,
+            light: `#fff2df`,
+            name: `guy trying to figure out what old paper looked like but he only sees them in videogames`,
+        },
+        {
+            dark: `#15017d`,
+            light: `#affed1`,
+            name: `artificial kids' drink brand discontinued in 2003`,
+        },
+        {
+            dark: `#03272b`,
+            light: `#ffe4e7`,
+            name: `literally just two colors i really like`
+        }
+    ];
+
+    let prevRoll;
+
+    function reroll() {
+        function roll() {
+            return Math.floor(Math.random() * colors.length);
+        }
+
+        let currentRoll = roll();
+
+        if (currentRoll === prevRoll) {
+            while (currentRoll === prevRoll) {
+                currentRoll = roll();
+            }
+        }
+
+        const colorPicked = currentRoll;
+        const colorDark = colors[colorPicked].dark;
+        const colorLight = colors[colorPicked].light;
+        const colorName = colors[colorPicked].name;
+
+        const htmlStyle = document.querySelector("html");
+
+        htmlStyle.setAttribute(
+            "style",
+            `--color-dark: ${colorDark};--color-light: ${colorLight};--color-name: "${colorName}"`,
+        );
+
+        prevRoll = colorPicked;
+    }
+
+    reroll();
+</script>

@@ -1,0 +1,123 @@
+---
+import "../styles/reset.css";
+import "../styles/base.css";
+
+import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
+const { title, description } = Astro.props;
+
+let pageTitle;
+let pageDescription;
+
+if (title) {
+    pageTitle = title;
+} else {
+    pageTitle = SITE_TITLE;
+}
+if (description) {
+    pageDescription = description;
+} else {
+    pageDescription = SITE_DESCRIPTION;
+}
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+
+import { SEO } from "astro-seo";
+---
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <meta content="IE=edge" http-equiv="X-UA-Compatible" /><link
+        rel="alternate"
+        type="application/rss+xml"
+        title={pageTitle}
+        href={new URL("feed.xml", Astro.site)}
+    />
+
+    <SEO
+        title={pageTitle}
+        description={pageDescription}
+        extend={{
+            link: [{ rel: "icon", href: "/favicon.ico" }],
+            meta: [
+                { name: "twitter:title", content: pageTitle },
+                { name: "twitter:description", content: pageDescription },
+            ],
+        }}
+    />
+    <style is:global>
+        :where(span:not([aria-hidden])):not(:focus):not(:active) {
+            position: absolute;
+            clip-path: inset(50%);
+            inline-size: 1px;
+            block-size: 1px;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+
+        @layer font {
+            @font-face {
+                font-display: swap;
+                font-family: "RecursiveSans";
+                font-style: oblique 15deg 0deg;
+                font-weight: 300 1000;
+                src: url("/recursive-sans.woff2") format("woff2");
+            }
+
+            @font-face {
+                font-display: swap;
+                font-family: "RecursiveMono";
+                font-style: oblique 15deg 0deg;
+                font-weight: 300 1000;
+                src: url("/recursive-mono.woff2") format("woff2");
+            }
+
+            :where(*, *::before, *::after) {
+                font-variation-settings:
+                    "MONO" var(--mono, 0),
+                    "CASL" var(--casual, 0),
+                    "slnt" var(--slant, 0),
+                    "CRSV" var(--cursive, 0.5);
+                text-transform: lowercase !important;
+
+                --font-weight-calc: calc(
+                    var(--font-weight, 450) * var(--font-weight-multiplier, 1)
+                );
+                --inverted-font-weight-calc: calc(
+                    var(--font-weight, 450) *
+                        var(--inverted-font-weight-multiplier, 0.8889)
+                );
+                font-weight: var(--font-weight-calc);
+            }
+
+            :root {
+                --recursive-sans:
+                    "RecursiveSans", "RecursiveSans fallback", "Inter",
+                    "Roboto", "Helvetica Neue", "Arial Nova", "Nimbus Sans",
+                    "Arial", sans-serif;
+                --recursive-mono:
+                    "RecursiveMono", "RecursiveMono fallback", "Nimbus Mono PS",
+                    "Courier New", monospace;
+                --clamp: clamp(16px, 14.694px + 0.408vi, 18px);
+                font-size: max(1em, var(--clamp));
+            }
+
+            em {
+                --slant: -15;
+            }
+
+            strong {
+                font-weight: bolder;
+            }
+
+            @media (prefers-color-scheme: dark) {
+                :root {
+                    --font-weight-multiplier: 0.8889;
+                    --inverted-font-weight-multiplier: 1;
+                }
+            }
+        }
+    </style>
+    <title>{pageTitle}</title>
+</head>

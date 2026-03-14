@@ -1,0 +1,24 @@
+---
+import Meta from "../components/meta.astro";
+import Colors from "../components/themecolor.astro";
+
+import Header from "../components/header.astro";
+
+const frontpageOpen = "<section>";
+const frontpageClose = "</section>";
+
+const { frontpage, title, description } = Astro.props;
+---
+
+<html lang="en">
+    <Meta title={title} description={description} />
+    <body>
+        {frontpage && <Fragment set:html={frontpageOpen} />}
+        <article>
+            <Header />
+            <slot />
+        </article>
+        {frontpage && <Fragment set:html={frontpageClose} />}
+        <Colors />
+    </body>
+</html>
