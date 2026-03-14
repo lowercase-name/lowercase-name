@@ -1,4 +1,16 @@
 @layer properties {
+    @property --color-fg {
+        syntax: "<color>";
+        inherits: true;
+        initial-value: #000;
+    }
+
+    @property --color-bg {
+        syntax: "<color>";
+        inherits: true;
+        initial-value: #fff;
+    }
+
     :root {
         --color-fg: light-dark(var(--color-dark, #000, ), var(--color-light, #fff));
         --color-bg: light-dark(var(--color-light, #fff), var(--color-dark, #000, ));
@@ -19,6 +31,9 @@
         --2ch: clamp(2px, -9.755px + 3.673vi, 20px);
         --3ch: clamp(3px, -14.633px + 5.51vi, 30px);
 
+        transition: --color-fg 200ms ease,
+            --color-bg 200ms ease;
+
         --mix-blend-mode: darken;
 
         @media (prefers-color-scheme: light) {
@@ -28,6 +43,64 @@
         @media (prefers-contrast: more) {
             --color-fg: light-dark(#000, #fff);
             --color-bg: light-dark(#fff, #000);
+        }
+    }
+}
+
+@layer font {
+    @font-face {
+        font-display: swap;
+        font-family: "RecursiveSans";
+        font-style: oblique 15deg 0deg;
+        font-weight: 300 1000;
+        src: url("/recursive-sans.woff2") format("woff2");
+    }
+
+    @font-face {
+        font-display: swap;
+        font-family: "RecursiveMono";
+        font-style: oblique 15deg 0deg;
+        font-weight: 300 1000;
+        src: url("/recursive-mono.woff2") format("woff2");
+    }
+
+    :where(*, *::before, *::after) {
+        font-variation-settings:
+            "MONO" var(--mono, 0),
+            "CASL" var(--casual, 0),
+            "slnt" var(--slant, 0),
+            "CRSV" var(--cursive, 0.5);
+        text-transform: lowercase !important;
+
+        --font-weight-calc: calc(var(--font-weight, 450) * var(--font-weight-multiplier, 1));
+        --inverted-font-weight-calc: calc(var(--font-weight, 450) * var(--inverted-font-weight-multiplier, 0.8889));
+        font-weight: var(--font-weight-calc);
+    }
+
+    :root {
+        --recursive-sans:
+            "RecursiveSans", "RecursiveSans fallback", "Inter",
+            "Roboto", "Helvetica Neue", "Arial Nova", "Nimbus Sans",
+            "Arial", sans-serif;
+        --recursive-mono:
+            "RecursiveMono", "RecursiveMono fallback", "Nimbus Mono PS",
+            "Courier New", monospace;
+        --clamp: clamp(16px, 14.694px + 0.408vi, 18px);
+        font-size: max(1em, var(--clamp));
+    }
+
+    em {
+        --slant: -15;
+    }
+
+    strong {
+        font-weight: bolder;
+    }
+
+    @media (prefers-color-scheme: dark) {
+        :root {
+            --font-weight-multiplier: 0.8889;
+            --inverted-font-weight-multiplier: 1;
         }
     }
 }
@@ -207,22 +280,55 @@
 
     a[href],
     summary {
-        background: var(--color-fg);
-        border: 1px dashed var(--color-bg);
-        color: var(--color-bg);
-        font-weight: bolder;
-        padding: .025lh;
-        padding-inline: .1lh;
-        text-decoration: none;
         --casual: 1;
         --cursive: 1;
-        --font-weight: 600;
+        --font-weight: 700;
+        --stroke-a: var(--color-bg);
+        --stroke-b: var(--color-fg);
+        background: var(--stroke-a);
+        border-block-end: 2px dotted var(--stroke-b);
+        box-decoration-break: clone;
+        color: var(--stroke-b);
+        font-weight: var(--font-weight-calc);
+        padding-inline: 1px;
+        paint-order: stroke fill;
+        position: relative;
+        text-decoration: none;
 
         &:where(:hover, :focus) {
-            background: var(--color-bg);
-            border-color: var(--color-fg);
-            color: var(--color-fg);
+            --stroke-a: var(--color-fg);
+            --stroke-b: var(--color-bg);
+            font-weight: var(--inverted-font-weight-calc);
         }
+
+        p & {
+            &:after {
+                background: var(--stroke-b);
+                content: '';
+                line-height: 0;
+                mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 14'%3E%3Cpath d='M8.3 10.5V9h-4l5.2-5.2-1-1-5.3 5.1V4H1.8v6.5z'/%3E%3Cpath fill='none' d='m3.4 6.7 3-2.9H1.5v7h7V5.9l-3 2.9z'/%3E%3Cpath d='M8.5 5.9v4.9h-7v-7h4.9l1.5-1.6H0v10h10V4.4z'/%3E%3C/svg%3E");
+                mask-position: right;
+                mask-repeat: no-repeat;
+                mask-size: .8em;
+                padding-inline-start: 2ch;
+            }
+
+            &[rel="nofollow"]::after {
+                content: '' / ' (external link)';
+                mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewbox='0 0 12.2 12.2' width='14' height='14'%3E%3Cpath d='M5.7 0v1.5h4L4.5 6.7l1 1.1 5.3-5.2v3.9h1.4V0z'/%3E%3Cpath fill='none' d='M3.4 6.7l3-2.9H1.5v7h7V5.9l-3 2.9z'/%3E%3Cpath d='M8.5 5.9v4.9h-7v-7h4.9l1.5-1.6H0v10h10V4.4z'/%3E%3C/svg%3E");
+                mask-position: calc(100% - 1px) center;
+            }
+
+            :where(nav[aria-label="blog posts"], section) &::after {
+                content: unset;
+            }
+        }
+    }
+
+    main b {
+        --font-weight: 800;
+        border-block-end: 2px solid var(--color-fg);
+        color: var(--color-fg);
     }
 
     abbr[title] {
@@ -279,36 +385,49 @@
         }
     }
 
-    nav[aria-label="main links"] {
-        >a[href] {
-            display: block;
-            font-size: .9rem;
+    nav[aria-label="main links"]>a[href] {
+        --font-weight: 1000;
+        --casual: 0;
+        --cursive: 0;
+        --mono: 1;
+        -webkit-text-stroke: unset;
+        background: var(--color-fg);
+        border: 1px dashed var(--color-bg);
+        color: var(--color-bg);
+        display: block;
+        font-family: var(--recursive-mono);
+        font-size: .9rem;
+        font-weight: var(--font-weight-calc);
+        font-weight: var(--inverted-font-weight-calc);
+        inline-size: fit-content;
+        padding-block: .025lh;
+        padding-inline: .1lh;
+        text-align: center;
+        text-decoration: none;
+
+        &:where(:hover, :focus) {
+            background: var(--color-bg);
+            border-color: var(--color-fg);
+            color: var(--color-fg);
             font-weight: var(--font-weight-calc);
-            inline-size: fit-content;
-            text-align: center;
-            --font-weight: 1000;
-            --casual: 0;
-            --cursive: 0;
-            --mono: 1;
+        }
 
-            font-family: var(--recursive-mono);
 
-            &::before,
-            &::after {
-                font-weight: 400;
+        &::before,
+        &::after {
+            font-weight: 400;
 
-                @media (prefers-color-scheme: dark) {
-                    font-weight: 450;
-                }
+            @media (prefers-color-scheme: dark) {
+                font-weight: 450;
             }
+        }
 
-            &::before {
-                content: '<a href="/' / "";
-            }
+        &::before {
+            content: '<a href="/' / "";
+        }
 
-            &::after {
-                content: '">' / "";
-            }
+        &::after {
+            content: '">' / "";
         }
     }
 
@@ -322,14 +441,31 @@
             paint-order: stroke fill;
         }
 
-        >:is(p, time) {
+        >p {
             --casual: 1;
+            --font-weight: 500;
+            font-size: var(--h5);
+
+            >em {
+                padding-inline-end: 1ch;
+                vertical-align: middle;
+            }
+        }
+    }
+
+    time {
+        --casual: 0;
+        --mono: 1;
+        --font-weight: 400;
+        font-family: var(--recursive-mono);
+        font-size: var(--small);
+
+        &::before {
+            content: "[" / "";
         }
 
-        >time {
-            --mono: 1;
-            font-family: var(--recursive-mono);
-            font-size: var(--small);
+        &::after {
+            content: "] " / " ";
         }
     }
 
@@ -411,6 +547,7 @@
     :not(pre)>code {
         --mono: 1;
         --cursive: 1;
+        box-decoration-break: clone;
         font-family: var(--recursive-mono);
         padding-inline: .1ch;
 
@@ -441,12 +578,6 @@
             content: "- " / "";
             vertical-align: middle;
         }
-    }
-
-    main b {
-        background: unset;
-        color: inherit;
-        text-decoration: solid underline 1px;
     }
 }
 
@@ -479,24 +610,31 @@
 
 @layer blog-index-style {
     main>nav {
-        time {
-            --mono: 1;
-            --font-weight: 400;
-            font-family: var(--recursive-mono);
-            font-size: var(--small);
-
-            &::before {
-                content: "[" / "";
-            }
-
-            &::after {
-                content: "] " / " ";
-            }
-        }
-
         a[href] {
             font-size: var(--h5);
             vertical-align: middle;
+        }
+    }
+}
+
+@layer blog-post-style {
+    p:has(a[href]:has(as-dithered-image)) {
+        inline-size: 100vi;
+        margin-inline: auto;
+        max-inline-size: 100vi;
+    }
+
+
+    a[href]:has(as-dithered-image) {
+        background: unset;
+        border-color: transparent;
+        inline-size: 100vi;
+        max-inline-size: 100vi;
+        padding: 0;
+
+        &:is(:hover, :focus) {
+            background: unset;
+            border-color: transparent;
         }
     }
 }

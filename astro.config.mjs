@@ -9,23 +9,19 @@ const fontaineConfig = {
 }
 import { defineConfig } from 'astro/config';
 
-import mdx from '@astrojs/mdx';
-
 import sitemap from '@astrojs/sitemap';
 
 import rehypeExternalLinks from 'rehype-external-links';
 import remarkAbbr from '@syenchuk/remark-abbr'
 import remarkSmartypants from "remark-smartypants";
+import remarkDirective from "remark-directive";
 
-import aiRobotsTxt from 'astro-ai-robots-txt';
+import mailObfuscation from 'astro-mail-obfuscation';
 
 // https://astro.build/config
 export default defineConfig({
-    experimental: {
-        preserveScriptOrder: true
-    },
     site: 'https://lowercase.name',
-    integrations: [mdx(), sitemap(), aiRobotsTxt()],
+    integrations: [sitemap(), mailObfuscation()],
 
     vite: {
         plugins: [
@@ -37,7 +33,7 @@ export default defineConfig({
 
     markdown: {
         // @ts-ignore
-        remarkPlugins: [remarkAbbr, [remarkSmartypants, { dashes: "oldschool" }]],
+        remarkPlugins: [remarkAbbr, remarkDirective, [remarkSmartypants, { dashes: "oldschool" }]],
         rehypePlugins: [
             rehypeExternalLinks
         ]

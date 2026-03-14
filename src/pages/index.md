@@ -2,7 +2,7 @@
 layout: ../layouts/frontpage.astro
 ---
 
-***j rose** (lowercase, like the website)*
+*my name is **j** (lowercase, like the website)!*
 
 i like to make websites, stuff that use the same skeletons as websites, and stuff that helps build and make websites, and i do so [completely a.i.-free.](/blog/a-polite-stance-on-ai)
 

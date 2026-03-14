@@ -1,14 +1,10 @@
 ---
 import Base from "../layouts/base.astro";
-
-import FormattedDate from "../components/dates.astro";
-
-import { Image } from "astro:assets";
 import type { CollectionEntry } from "astro:content";
 
 type Props = CollectionEntry<"blog">["data"];
 
-const { title, description, date } = Astro.props;
+const { title, description } = Astro.props;
 ---
 
 <Base title={title} description={description}>

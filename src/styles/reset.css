@@ -1,4 +1,8 @@
 @layer reset {
+    @view-transition {
+        navigation: auto;
+    }
+
     :where(html) {
         interpolate-size: allow-keywords;
         color-scheme: light dark;

@@ -12,7 +12,7 @@
         },
         {
             dark: `#2d2617`,
-            light: `#f9f120`,
+            light: `#f8ee98`,
             name: `worn-out caution tape`,
         },
         {
@@ -68,11 +68,35 @@
         {
             dark: `#03272b`,
             light: `#ffe4e7`,
-            name: `literally just two colors i really like`
-        }
+            name: `literally just two colors i really like`,
+        },
+        {
+            dark: `#362368`,
+            light: `#fafa09`,
+            name: `caution tape 2: the reckoning`,
+        },
     ];
 
+    function hexToRgbA(hex) {
+        var c;
+        if (/^#([A-Fa-f0-9]{3}){1,2}$/.test(hex)) {
+            c = hex.substring(1).split("");
+            if (c.length == 3) {
+                c = [c[0], c[0], c[1], c[1], c[2], c[2]];
+            }
+            c = "0x" + c.join("");
+            return (
+                "rgba(" +
+                [(c >> 16) & 255, (c >> 8) & 255, c & 255].join(",") +
+                ",255)"
+            );
+        }
+        throw new Error("Bad Hex");
+    }
+
     let prevRoll;
+    let colorDark;
+    let colorLight;
 
     function reroll() {
         function roll() {
@@ -88,8 +112,8 @@
         }
 
         const colorPicked = currentRoll;
-        const colorDark = colors[colorPicked].dark;
-        const colorLight = colors[colorPicked].light;
+        colorDark = colors[colorPicked].dark;
+        colorLight = colors[colorPicked].light;
         const colorName = colors[colorPicked].name;
 
         const htmlStyle = document.querySelector("html");
@@ -98,8 +122,47 @@
             "style",
             `--color-dark: ${colorDark};--color-light: ${colorLight};--color-name: "${colorName}"`,
         );
-
         prevRoll = colorPicked;
+        if (!document.startViewTransition) {
+            lightDark();
+            return;
+        }
+        document.startViewTransition(() => {
+            lightDark();
+        });
+    }
+
+    function lightDark() {
+        if (document.querySelector("as-dithered-image")) {
+            const themeCheck = window?.matchMedia?.(
+                "(prefers-color-scheme:dark)",
+            )?.matches
+                ? "dark"
+                : "light";
+            const setImgColors = document.querySelectorAll("as-dithered-image");
+            setImgColors.forEach((tag) => {
+                if (themeCheck == "dark") {
+                    tag.setAttribute("lightrgba", hexToRgbA(colorDark));
+                    tag.setAttribute("darkrgba", hexToRgbA(colorLight));
+                } else {
+                    tag.setAttribute("darkrgba", hexToRgbA(colorDark));
+                    tag.setAttribute("lightrgba", hexToRgbA(colorLight));
+                }
+            });
+        }
+    }
+
+    if (document.querySelector("as-dithered-image")) {
+        var match = window?.matchMedia?.("(prefers-color-scheme:dark)");
+        match.addEventListener("change", (e) => {
+            if (!document.startViewTransition) {
+                lightDark();
+                return;
+            }
+            document.startViewTransition(() => {
+                lightDark();
+            });
+        });
     }
 
     reroll();
