@@ -35,7 +35,14 @@ export default defineConfig({
         // @ts-ignore
         remarkPlugins: [remarkAbbr, remarkDirective, [remarkSmartypants, { dashes: "oldschool" }]],
         rehypePlugins: [
-            rehypeExternalLinks
+            [rehypeExternalLinks, {
+                rel: ["noreferrer", "nofollow", "noopener", "external"]
+            }]
         ]
     },
+
+    image: {
+        responsiveStyles: true,
+        layout: 'constrained'
+    }
 });
