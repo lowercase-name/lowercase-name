@@ -1,138 +1,84 @@
-<script is:inline>
-    const colors = [
-        {
-            dark: `#000`,
-            light: `#fff`,
-            name: `literally just black and white`,
-        },
-        {
-            dark: `#062b5b`,
-            light: `#f6f992`,
-            name: `walmart in an anime with washed out colors`,
-        },
-        {
-            dark: `#2d2617`,
-            light: `#f8ee98`,
-            name: `worn-out caution tape`,
-        },
-        {
-            dark: `#420c65`,
-            light: `#faff70`,
-            name: `wario`,
-        },
-        {
-            dark: `#980364`,
-            light: `#faffff`,
-            name: `nice homemade jam`,
-        },
-        {
-            dark: `#1f2937`,
-            light: `#a0ffc3`,
-            name: `legally distinct spotify`,
-        },
-        {
-            dark: `#182297`,
-            light: `#feffed`,
-            name: `commodorn't 64`,
-        },
-        {
-            dark: `#590949`,
-            light: `#a8fee9`,
-            name: `christmas but kinda evil and twisted`,
-        },
-        {
-            dark: `#265b4d`,
-            light: `#fff`,
-            name: `mid-tier coffee packaging at okay roasting company`,
-        },
-        {
-            dark: `#0e5382`,
-            light: `#f7feed`,
-            name: `niche european luxury chocolate`,
-        },
-        {
-            dark: `#070d20`,
-            light: `#e1ecbe`,
-            name: `medical terminal in a horror game`,
-        },
-        {
-            dark: `#5f2e2d`,
-            light: `#fff2df`,
-            name: `guy trying to figure out what old paper looked like but he only sees them in videogames`,
-        },
-        {
-            dark: `#15017d`,
-            light: `#affed1`,
-            name: `artificial kids' drink brand discontinued in 2003`,
-        },
-        {
-            dark: `#03272b`,
-            light: `#ffe4e7`,
-            name: `literally just two colors i really like`,
-        },
-        {
-            dark: `#362368`,
-            light: `#fafa09`,
-            name: `caution tape 2: the reckoning`,
-        },
-    ];
-
-    function hexToRgbA(hex) {
-        var c;
-        if (/^#([A-Fa-f0-9]{3}){1,2}$/.test(hex)) {
-            c = hex.substring(1).split("");
-            if (c.length == 3) {
-                c = [c[0], c[0], c[1], c[1], c[2], c[2]];
-            }
-            c = "0x" + c.join("");
-            return (
-                "rgba(" +
-                [(c >> 16) & 255, (c >> 8) & 255, c & 255].join(",") +
-                ",255)"
-            );
-        }
-        throw new Error("Bad Hex");
-    }
-
-    let prevRoll;
-    let colorDark;
-    let colorLight;
+<script>
+    let prevRolls: number[] = [];
+    let colorPicked: number;
 
     function reroll() {
         function roll() {
-            return Math.floor(Math.random() * colors.length);
+            return Math.floor(Math.random() * 14 + 1);
         }
 
         let currentRoll = roll();
+        prevRolls = prevRolls.slice(-5);
 
-        if (currentRoll === prevRoll) {
-            while (currentRoll === prevRoll) {
+        if (prevRolls.includes(currentRoll)) {
+            while (prevRolls.includes(currentRoll)) {
                 currentRoll = roll();
             }
         }
 
-        const colorPicked = currentRoll;
-        colorDark = colors[colorPicked].dark;
-        colorLight = colors[colorPicked].light;
-        const colorName = colors[colorPicked].name;
+        colorPicked = currentRoll;
 
-        const htmlStyle = document.querySelector("html");
+        prevRolls.push(colorPicked);
 
-        htmlStyle.setAttribute(
-            "style",
-            `--color-dark: ${colorDark};--color-light: ${colorLight};--color-name: "${colorName}"`,
-        );
-        prevRoll = colorPicked;
-        if (!document.startViewTransition) {
-            lightDark();
-            return;
-        }
-        document.startViewTransition(() => {
-            lightDark();
-        });
+        lightDark();
     }
 
+    let colorDark;
+    let colorLight;
+
     function lightDark() {
+        function getVar(cssVar) {
+            return window
+                .getComputedStyle(document.documentElement)
+                .getPropertyValue(`--${cssVar}`);
+        }
+
+        function hexToRgbA(hex) {
+            var c;
+            if (/^#([A-Fa-f0-9]{3}){1,2}$/.test(hex)) {
+                c = hex.substring(1).split("");
+                if (c.length == 3) {
+                    c = [c[0], c[0], c[1], c[1], c[2], c[2]];
+                }
+                c = "0x" + c.join("");
+                return (
+                    "rgba(" +
+                    [(c >> 16) & 255, (c >> 8) & 255, c & 255].join(",") +
+                    ",255)"
+                );
+            }
+            throw new Error("Bad Hex");
+        }
+
+        const contrastCheck = window?.matchMedia?.("(prefers-contrast: more)")
+            ?.matches
+            ? "more"
+            : null;
+
+        if (contrastCheck == "more") {
+            colorDark = `#000`;
+            colorLight = `#fff`;
+            document.documentElement.style.setProperty(
+                "--color-name",
+                `"literally black and white"`,
+            );
+        } else {
+            colorDark = getVar(`color-${colorPicked}-dark`);
+            colorLight = getVar(`color-${colorPicked}-light`);
+            document.documentElement.style.setProperty(
+                "--color-dark",
+                `var(--color-${colorPicked}-dark)`,
+            );
+            document.documentElement.style.setProperty(
+                "--color-light",
+                `var(--color-${colorPicked}-light)`,
+            );
+            document.documentElement.style.setProperty(
+                "--color-name",
+                `var(--color-${colorPicked}-name)`,
+            );
+        }
+
         if (document.querySelector("as-dithered-image")) {
             const themeCheck = window?.matchMedia?.(
                 "(prefers-color-scheme:dark)",
@@ -164,6 +110,18 @@
             });
         });
     }
+    const letter: any = document.querySelector(
+        'button[aria-label="switch to random color scheme"]',
+    );
+    letter.addEventListener("click", () => {
+        if (!document.startViewTransition) {
+            reroll();
+            return;
+        }
+        document.startViewTransition(() => {
+            reroll();
+        });
+    });
 
     reroll();
 </script>

@@ -35,22 +35,6 @@
 
     /* Body defaults */
 
-    @property --100cqi {
-        syntax: '<length>';
-        initial-value: 0px;
-        inherits: true;
-    }
-
-    :where(body) {
-        block-size: fit-content;
-        container-type: inline-size;
-        line-height: 1.5;
-        min-block-size: 100vb;
-        min-block-size: 100dvb;
-        min-inline-size: 300px;
-        --100cqi: 100cqi;
-    }
-
     /* List styles */
     :where(ul[role='list'], ol[role='list']) {
         list-style: none;

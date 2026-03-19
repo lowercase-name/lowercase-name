@@ -1,4 +1,10 @@
-@layer properties {
+@layer random-colors {
+
+    ::view-transition-old(root),
+    ::view-transition-new(root) {
+        animation-duration: 400ms;
+    }
+
     @property --color-fg {
         syntax: "<color>";
         inherits: true;
@@ -15,6 +21,62 @@
         --color-fg: light-dark(var(--color-dark, #000, ), var(--color-light, #fff));
         --color-bg: light-dark(var(--color-light, #fff), var(--color-dark, #000, ));
 
+        --color-1-dark: #442312;
+        --color-1-light: #c9f3ea;
+        --color-1-name: "chocolate chip mint";
+        --color-2-dark: #1c0604;
+        --color-2-light: #e8eecf;
+        --color-2-name: "nier’nt automata";
+        --color-3-dark: #060229;
+        --color-3-light: #e1eca6;
+        --color-3-name: "shockwave flash menu from 2004";
+        --color-4-dark: #270355;
+        --color-4-light: #e6e9ba;
+        --color-4-name: "gritty capcom logo from ps3 era";
+        --color-5-dark: #582b8f;
+        --color-5-light: #eff9fd;
+        --color-5-name: "remember when twitch.tv was cool (no it wasn’t)";
+        --color-6-dark: #7a1550;
+        --color-6-light: #effdfe;
+        --color-6-name: "suspicious mansion in a whodunnit";
+        --color-7-dark: #2a083a;
+        --color-7-light: #fff5a8;
+        --color-7-name: "old ibm sat in the sun for too long";
+        --color-8-dark: #671f74;
+        --color-8-light: #d7fefa;
+        --color-8-name: "colors that make your room feel 5 degrees colder";
+        --color-9-dark: #530c25;
+        --color-9-light: #e3f0ce;
+        --color-9-name: "cartoon lawn";
+        --color-10-dark: #0f205a;
+        --color-10-light: #e9ede7;
+        --color-10-name: "the color equivalent to car insurance";
+        --color-11-dark: #070d20;
+        --color-11-light: #e1ecbe;
+        --color-11-name: "medical terminal in a horror game";
+        --color-12-dark: #03272b;
+        --color-12-light: #ffe4e7;
+        --color-12-name: "my two favorite colors";
+        --color-13-dark: #221610;
+        --color-13-light: #f7eafb;
+        --color-13-name: "cheap hello kitty-branded chocolate";
+        --color-14-dark: #5f2e2d;
+        --color-14-light: #fff2df;
+        --color-14-name: "guy trying to figure out what old paper looked like but he only sees them in videogames";
+        --color-15-dark: #0e5382;
+        --color-15-light: #f7feed;
+        --color-15-name: "niche european luxury candy";
+
+        @media (prefers-contrast: more) {
+            --color-dark: #000 !important;
+            --color-light: #fff !important;
+        }
+    }
+
+}
+
+@layer properties {
+    :root {
         --ratio: 1.2;
         --teensy: max(.625rem, 10px);
         --small: .75rem;
@@ -25,24 +87,17 @@
         --h1: calc(var(--clamp) * (pow(var(--ratio), 5) - 1) + 1rem);
         --j: calc(var(--clamp) * (pow(var(--ratio), 6) - 1) + 1rem);
 
-        --row-gap-big: 27px;
-        --row-gap-small: 10px;
         --1ch: clamp(1px, -4.878px + 1.837vi, 10px);
         --2ch: clamp(2px, -9.755px + 3.673vi, 20px);
         --3ch: clamp(3px, -14.633px + 5.51vi, 30px);
 
-        transition: --color-fg 200ms ease,
-            --color-bg 200ms ease;
+        --row-gap-big: 27px;
+        --row-gap-small: 10px;
 
         --mix-blend-mode: darken;
 
         @media (prefers-color-scheme: light) {
             --mix-blend-mode: screen;
-        }
-
-        @media (prefers-contrast: more) {
-            --color-fg: light-dark(#000, #fff);
-            --color-bg: light-dark(#fff, #000);
         }
     }
 }
@@ -70,7 +125,7 @@
             "CASL" var(--casual, 0),
             "slnt" var(--slant, 0),
             "CRSV" var(--cursive, 0.5);
-        text-transform: lowercase !important;
+        text-transform: lowercase;
 
         --font-weight-calc: calc(var(--font-weight, 450) * var(--font-weight-multiplier, 1));
         --inverted-font-weight-calc: calc(var(--font-weight, 450) * var(--inverted-font-weight-multiplier, 0.8889));
@@ -106,6 +161,27 @@
 }
 
 @layer grid {
+
+    @property --100cqi {
+        syntax: '<length>';
+        initial-value: 0px;
+        inherits: true;
+    }
+
+    html {
+        --100cqi: 100cqi;
+    }
+
+    :where(body) {
+        block-size: fit-content;
+        container-type: inline-size;
+        line-height: 1.5;
+        min-block-size: 100vb;
+        min-block-size: 100dvb;
+        min-inline-size: 300px;
+        overflow-x: hidden;
+    }
+
     :root {
         line-height: 1.5;
         overflow: auto;
@@ -114,23 +190,27 @@
     }
 
     article {
+        --subgrid:
+            [deadzone-start] var(--1ch) [big-pad-start] var(--2ch) [small-pad-start] var(--1ch) [content-start] 1fr [content-end] var(--1ch) [small-pad-end] var(--2ch) [big-pad-end] var(--1ch) [deadzone-end];
+
         display: grid;
-        grid-template-columns: [deadzone-start] var(--1ch) [big-pad-start] var(--2ch) [small-pad-start] var(--1ch) [content-start] 1fr [content-end] var(--1ch) [small-pad-end] var(--2ch) [big-pad-end] var(--1ch) [deadzone-end];
-        inline-size: min(100%, 45rem);
+        grid-template-columns: var(--subgrid);
+        inline-size: min(var(--100cqi), 45rem);
         justify-content: center;
         margin-block: 1lh;
         margin-inline: auto;
-        padding: var(--1ch);
+        padding-block: var(--1ch);
         row-gap: var(--row-gap-big);
 
         >* {
             display: grid;
             grid-column: deadzone;
             grid-template-columns: subgrid;
-            max-inline-size: var(--100cqi);
+            justify-self: center;
 
             :where(& > *) {
                 grid-column: content;
+                padding-inline: var(--1ch);
             }
         }
 
@@ -142,8 +222,8 @@
                 aside,
                 figure,
                 nav,
-                ul,
-                nav) {
+                ul) {
+
                 display: grid;
                 grid-column: small-pad;
                 grid-template-columns: subgrid;
@@ -155,8 +235,10 @@
                 }
             }
 
-            :where(figure) {
-                grid-column: big-pad;
+            :where(figure, p:has(as-dithered-image)) {
+                display: grid;
+                grid-column: deadzone;
+                padding: 0;
 
                 >a {
                     display: block;
@@ -185,6 +267,7 @@
             display: grid;
             grid-column: deadzone;
             grid-template-rows: auto auto auto;
+            inline-size: min(45rem, var(--100cqi));
             padding-inline: 4ch;
             row-gap: var(--row-gap-small);
 
@@ -195,27 +278,28 @@
 
         header {
             align-items: center;
+            column-gap: var(--row-gap-small);
             display: grid;
             grid-column: deadzone;
             grid-template-columns: var(--3ch) auto auto var(--3ch);
-            grid-template-rows: auto auto;
-            justify-items: center;
-            row-gap: var(--row-gap-small);
+            justify-self: stretch;
 
+            >* {
+                inline-size: unset;
+                justify-self: unset;
+            }
 
-            &:has(nav + div) {
-                >div {
-                    grid-column: 3 / 4;
-                    justify-self: end;
-                    text-align: end;
-                }
+            >div {
+                grid-column: 3 / 4;
+                justify-self: end;
+                text-align: end;
+            }
 
-                >nav {
-                    display: grid;
-                    grid-column: 2 / 3;
-                    justify-self: start;
-                    row-gap: var(--row-gap-small);
-                }
+            >nav {
+                display: grid;
+                grid-column: 2 / 3;
+                justify-self: start;
+                row-gap: var(--row-gap-small);
             }
         }
 
@@ -225,11 +309,13 @@
             grid-column: deadzone;
             grid-template-columns: var(--3ch) auto auto var(--3ch);
             grid-template-rows: auto auto;
+            justify-self: stretch;
 
             >* {
                 align-self: center;
                 grid-column: 2 / 3;
                 justify-self: start;
+                max-inline-size: min(69ch, calc(var(--100cqi)/2));
                 text-align: start;
             }
 
@@ -309,11 +395,11 @@
                 mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 14'%3E%3Cpath d='M8.3 10.5V9h-4l5.2-5.2-1-1-5.3 5.1V4H1.8v6.5z'/%3E%3Cpath fill='none' d='m3.4 6.7 3-2.9H1.5v7h7V5.9l-3 2.9z'/%3E%3Cpath d='M8.5 5.9v4.9h-7v-7h4.9l1.5-1.6H0v10h10V4.4z'/%3E%3C/svg%3E");
                 mask-position: right;
                 mask-repeat: no-repeat;
-                mask-size: .8em;
-                padding-inline-start: 2ch;
+                mask-size: max(.5em, 10px);
+                padding-inline-start: 1.5ch;
             }
 
-            &[rel="nofollow"]::after {
+            &[rel="noreferrer nofollow noopener external"]::after {
                 content: '' / ' (external link)';
                 mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewbox='0 0 12.2 12.2' width='14' height='14'%3E%3Cpath d='M5.7 0v1.5h4L4.5 6.7l1 1.1 5.3-5.2v3.9h1.4V0z'/%3E%3Cpath fill='none' d='M3.4 6.7l3-2.9H1.5v7h7V5.9l-3 2.9z'/%3E%3Cpath d='M8.5 5.9v4.9h-7v-7h4.9l1.5-1.6H0v10h10V4.4z'/%3E%3C/svg%3E");
                 mask-position: calc(100% - 1px) center;
@@ -337,7 +423,9 @@
 }
 
 @layer layout-style {
-    body {
+
+    body,
+    html {
         background: var(--color-bg);
         color: var(--color-fg);
         font-family: var(--recursive-sans);
@@ -473,7 +561,6 @@
         font-size: var(--small);
 
         >* {
-            max-inline-size: min(69ch, calc(var(--100cqi)/2));
             text-wrap: balance;
             --mono: 1;
             --font-weight: 600;
@@ -618,23 +705,20 @@
 }
 
 @layer blog-post-style {
-    p:has(a[href]:has(as-dithered-image)) {
-        inline-size: 100vi;
-        margin-inline: auto;
-        max-inline-size: 100vi;
-    }
 
 
     a[href]:has(as-dithered-image) {
         background: unset;
         border-color: transparent;
-        inline-size: 100vi;
-        max-inline-size: 100vi;
         padding: 0;
 
         &:is(:hover, :focus) {
             background: unset;
             border-color: transparent;
+        }
+
+        &::after {
+            content: unset;
         }
     }
 }
@@ -796,6 +880,18 @@
             }
 
             h2 {
+                --tag: "<h2>";
+            }
+
+            h3 {
+                --tag: "<h3>";
+            }
+
+            h4 {
+                --tag: "<h4>";
+            }
+
+            h5 {
                 --tag: "<h2>";
             }
         }
