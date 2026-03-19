@@ -66,9 +66,9 @@ ohhhhhh.
 
 ah.
 
-you know. i've lived in some real bad apartments, illegal duplexes and literally rotting slumhouses. i've lived in a single-room occupancy, even.
+you know. i've lived in some real bad apartments. illegal duplexes, literally-rotting slumhouses, suspicious buildings where everyone tells you not to drink the water because the pipes are all rusted.
 
-those were bad. *they weren't designed to be bad.* they are bad as a mere result of there's something uniquely stupid about toasting in a 45-degree celsius humidex, with no way to install air conditioning, because someone tried to be too clever about engineering *a window*.
+those were bad. *they weren't designed to be bad.* there's something uniquely stupid about toasting in a 45-degree celsius humidex, with no way to install air conditioning, because someone tried to be too clever about engineering *a window*.
 
 why would anyone choose to design a window like that?
 
@@ -106,7 +106,7 @@ but some of them go one step further, with the curtain.
 
 or lack, thereof.
 
-<as-dithered-image src="/assets/condo-design/tub2.jpg" alt="that tub, but now there's a stupid bit of glass poking out"></as-dithered-image>
+<as-dithered-image src="/assets/condo-design/tub2.jpg" alt="that tub, but now there's a stupid bit of glass poking out in place of a curtain"></as-dithered-image>
 
 in its place, they will bestow upon you one, singular, unmoving glass panel, covering only half the tub, and being permanently glued to the wall. usually, the walls would literally stick out, around the panel, making absolutely sure that you couldn't even put up a curtain rod if you wanted to.
 
