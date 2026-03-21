@@ -19,7 +19,7 @@ const { Content } = await render(post);
 
 <BlogPost {...post.data}>
     <hgroup>
-        <h1><em>{post.data.title}</em></h1>
+        <h1>{post.data.title}</h1>
         <p><em>{post.data.description}</em> <time datetime={post.data.date.toISOString()}>{post.data.goodDate}</time></p>
     </hgroup>
     <main><Content /></main>

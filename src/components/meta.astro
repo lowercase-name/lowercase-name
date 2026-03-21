@@ -22,6 +22,7 @@ if (description) {
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
 import { SEO } from "astro-seo";
+import { Font } from "astro:assets";
 ---
 
 <head>
@@ -46,6 +47,8 @@ import { SEO } from "astro-seo";
             ],
         }}
     />
+    <Font cssVariable="--font-recursive" />
+    <Font cssVariable="--font-recursive-mono" />
     <style is:global>
         :where(span:not([aria-hidden])):not(:focus):not(:active) {
             position: absolute;

@@ -2,12 +2,12 @@
 import { FontaineTransform } from 'fontaine';
 const fontaineConfig = {
     fallbacks: {
-        RecursiveSans: ['Inter', 'Roboto', 'Helvetica Neue', 'Arial Nova', 'Nimbus Sans', 'Arial'],
+        Recursive: ['Inter', 'Roboto', 'Helvetica Neue', 'Arial Nova', 'Nimbus Sans', 'Arial'],
         RecursiveMono: ['Nimbus Mono PS', 'Courier New']
     },
     resolvePath: (id) => new URL(`./public${id}`, import.meta.url)
 }
-import { defineConfig } from 'astro/config';
+import { defineConfig, fontProviders } from 'astro/config';
 
 import sitemap from '@astrojs/sitemap';
 
@@ -22,10 +22,37 @@ import mailObfuscation from 'astro-mail-obfuscation';
 export default defineConfig({
     site: 'https://lowercase.name',
     integrations: [sitemap(), mailObfuscation()],
+    fonts: [{
+        provider: fontProviders.local(),
+        name: "Recursive",
+        cssVariable: "--font-recursive",
+        options: {
+            variants: [
+                {
+                    weight: "300 1000",
+                    style: "normal",
+                    src: ["./src/assets/fonts/recursive.woff2"],
+                }
+            ]
+        }
+    },
+{
+        provider: fontProviders.local(),
+        name: "Recursive",
+        cssVariable: "--font-recursive-mono",
+        fallbacks: ["monospace"],
+        options: {
+            variants: [
+                {
+                    weight: "300 1000",
+                    style: "normal",
+                    src: ["./src/assets/fonts/recursive.woff2"],
+                }
+            ]
+        }
+    }],
 
     vite: {
-        plugins: [
-            FontaineTransform.vite(fontaineConfig)],
         css: {
             transformer: "lightningcss",
         },

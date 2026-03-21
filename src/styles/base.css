@@ -31,7 +31,7 @@
         --color-3-light: #e1eca6;
         --color-3-name: "shockwave flash menu from 2004";
         --color-4-dark: #270355;
-        --color-4-light: #e6e9ba;
+        --color-4-light: #e9e4ba;
         --color-4-name: "gritty capcom logo from ps3 era";
         --color-5-dark: #582b8f;
         --color-5-light: #eff9fd;
@@ -103,13 +103,6 @@
 }
 
 @layer font {
-    @font-face {
-        font-display: swap;
-        font-family: "RecursiveSans";
-        font-style: oblique 15deg 0deg;
-        font-weight: 300 1000;
-        src: url("/recursive-sans.woff2") format("woff2");
-    }
 
     @font-face {
         font-display: swap;
@@ -119,12 +112,21 @@
         src: url("/recursive-mono.woff2") format("woff2");
     }
 
+
+    @font-face {
+        font-display: swap;
+        font-family: "Recursive";
+        font-style: oblique 15deg 0deg;
+        font-weight: 300 1000;
+        src: url("/recursive.woff2") format("woff2");
+    }
+
     :where(*, *::before, *::after) {
         font-variation-settings:
-            "MONO" var(--mono, 0),
+            "MONO" var(--mono, .6),
             "CASL" var(--casual, 0),
             "slnt" var(--slant, 0),
-            "CRSV" var(--cursive, 0.5);
+            "CRSV" var(--cursive, .5);
         text-transform: lowercase;
 
         --font-weight-calc: calc(var(--font-weight, 450) * var(--font-weight-multiplier, 1));
@@ -134,12 +136,9 @@
 
     :root {
         --recursive-sans:
-            "RecursiveSans", "RecursiveSans fallback", "Inter",
-            "Roboto", "Helvetica Neue", "Arial Nova", "Nimbus Sans",
-            "Arial", sans-serif;
+            var(--font-recursive);
         --recursive-mono:
-            "RecursiveMono", "RecursiveMono fallback", "Nimbus Mono PS",
-            "Courier New", monospace;
+            var(--font-recursive-mono);
         --clamp: clamp(16px, 14.694px + 0.408vi, 18px);
         font-size: max(1em, var(--clamp));
     }
@@ -333,7 +332,7 @@
     h1 {
         --font-weight: 1000;
         font-size: var(--h1);
-        line-height: 1;
+        line-height: 1.25;
     }
 
     h2 {
@@ -437,6 +436,7 @@
 
     header {
         >div {
+            --mono: 0;
             --font-weight: 350;
             font-size: var(--h2);
             line-height: 1;
@@ -522,10 +522,8 @@
 
     hgroup {
         h1 {
-            --mono: .6;
             -webkit-text-stroke: 3px var(--color-fg);
             color: var(--color-bg);
-            font-family: var(--recursive-mono);
             paint-order: stroke fill;
         }
 
