@@ -12,12 +12,12 @@
     "@astrojs/rss": "^4.0.17",
     "@astrojs/sitemap": "^3.7.1",
     "@syenchuk/remark-abbr": "^1.0.1",
-    "@tailwindcss/vite": "^4.2.1",
+    "@tailwindcss/vite": "^4.2.2",
     "@types/mdast": "^4.0.4",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
-    "astro": "^6.0.4",
-    "astro-ai-robots-txt": "^0.1.3",
+    "astro": "^6.0.8",
+    "astro-ai-robots-txt": "^0.1.4",
     "astro-mail-obfuscation": "^2.3.4",
     "astro-seo": "^1.1.0",
     "glob": "^13.0.6",
@@ -35,7 +35,7 @@
     "unist-util-visit": "^5.1.0"
   },
   "devDependencies": {
-    "@astrojs/check": "^0.9.7",
+    "@astrojs/check": "^0.9.8",
     "fontaine": "^0.8.0",
     "typescript": "^5.9.3"
   }
