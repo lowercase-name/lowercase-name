@@ -1,12 +1,4 @@
 // @ts-check
-import { FontaineTransform } from 'fontaine';
-const fontaineConfig = {
-    fallbacks: {
-        Recursive: ['Inter', 'Roboto', 'Helvetica Neue', 'Arial Nova', 'Nimbus Sans', 'Arial'],
-        RecursiveMono: ['Nimbus Mono PS', 'Courier New']
-    },
-    resolvePath: (id) => new URL(`./public${id}`, import.meta.url)
-}
 import { defineConfig, fontProviders } from 'astro/config';
 
 import sitemap from '@astrojs/sitemap';
@@ -18,7 +10,6 @@ import remarkDirective from "remark-directive";
 
 import mailObfuscation from 'astro-mail-obfuscation';
 
-// https://astro.build/config
 export default defineConfig({
     site: 'https://lowercase.name',
     integrations: [sitemap(), mailObfuscation()],
