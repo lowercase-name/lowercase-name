@@ -728,15 +728,15 @@
 
 
             a[href]:has(as-dithered-image) {
+                block-size: min(40px, 10vi);
                 display: inline-block;
                 inline-size: min(40px, 10vi);
-                block-size: min(40px, 10vi);
 
                 as-dithered-image {
-                    display: inline-block;
-                    inline-size: min(40px, 10vi);
                     block-size: min(40px, 10vi);
                     border: 2px solid transparent;
+                    display: inline-block;
+                    inline-size: min(40px, 10vi);
                 }
 
                 &:is(:hover, :focus) as-dithered-image {
