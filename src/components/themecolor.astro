@@ -8,8 +8,8 @@
         }
 
         let currentRoll = roll();
-        prevRolls = prevRolls.slice(-5);
 
+        prevRolls = prevRolls.slice(-5);
         if (prevRolls.includes(currentRoll)) {
             while (prevRolls.includes(currentRoll)) {
                 currentRoll = roll();
@@ -80,14 +80,12 @@
         }
 
         if (document.querySelector("as-dithered-image")) {
-            const themeCheck = window?.matchMedia?.(
-                "(prefers-color-scheme:dark)",
-            )?.matches
-                ? "dark"
-                : "light";
+            const themeCheck =
+                window?.matchMedia?.("(prefers-color-scheme:dark)")?.matches &&
+                "dark";
             const setImgColors = document.querySelectorAll("as-dithered-image");
             setImgColors.forEach((tag) => {
-                if (themeCheck == "dark") {
+                if (!tag.hasAttribute("noinvert") && themeCheck == "dark") {
                     tag.setAttribute("lightrgba", hexToRgbA(colorDark));
                     tag.setAttribute("darkrgba", hexToRgbA(colorLight));
                 } else {
