@@ -10,7 +10,7 @@ let me tell you about the dumbest apartment window i've ever had to use.
 
 imagine you're in a condo, downtown vancouver, british columbia canada. the rent is incredibly cheap by this city's standards, for reasons you will not understand at first. it's about to become summer, so it's a bit warm out, and your windows are all floor-to-ceiling, uninsulated windows pointed directly at the afternoon sun, which makes it even warmer. only one of these windows can be opened, the one at the center, and it is *gigantic*.
 
-<as-dithered-image src="/assets/condo-design/window1.jpg" alt="a reenactment of a condo window setup, the openable window being 10 feet by 2 feet" cutoff="0.25"></as-dithered-image>
+<as-dithered-image src="/assets/condo-design/window1.avif" alt="a reenactment of a condo window setup, the openable window being 10 feet by 2 feet" cutoff="0.25"></as-dithered-image>
 
 it has a handle, which you turn, and after you turn on the handle, you can then pull to open it.
 
@@ -24,7 +24,7 @@ go on. honest guesses only.
 
 anyways, the correct answer is that <b>***it tilts vertically***</b>
 
-<as-dithered-image src="/assets/condo-design/window2.jpg" alt="that same window is now being tilted forward, from the top; the diagram also doesn't get it" cutoff="0.25"></as-dithered-image>
+<as-dithered-image src="/assets/condo-design/window2.avif" alt="that same window is now being tilted forward, from the top; the diagram also doesn't get it" cutoff="0.25"></as-dithered-image>
 
 this is the tilt state! because this ten foot tall window is a tilt casement window.
 
@@ -32,13 +32,13 @@ except, actually, no it's not, because that's not how it looks fully opened! thi
 
 which is when you pull the entire window out. the whole thing. no hinges.
 
-<as-dithered-image src="/assets/condo-design/window3.jpg" alt="there is now just a window hanging in the air i swear to god this is a real window i lived with" cutoff="0.25"></as-dithered-image>
+<as-dithered-image src="/assets/condo-design/window3.avif" alt="there is now just a window hanging in the air i swear to god this is a real window i lived with" cutoff="0.25"></as-dithered-image>
 
 it is hanging from the ceiling. you now have the world's worst curtain.
 
 that's step 2. if you then pulled it to the side, you get to your final state, a gigantic open space, mostly covered by a handrail. now you have a porch?
 
-<as-dithered-image src="/assets/condo-design/window4.jpg" alt="the window-curtain is now moved to the side; the diagram says 'why', which i also say" cutoff="0.25"></as-dithered-image>
+<as-dithered-image src="/assets/condo-design/window4.avif" alt="the window-curtain is now moved to the side; the diagram says 'why', which i also say" cutoff="0.25"></as-dithered-image>
 
 except, to be clear, those rails go right up against the window. your apartment is one entire porch, i guess.
 
@@ -54,15 +54,15 @@ wait
 
 when was that again
 
-<a href="https://globalnews.ca/news/7975968/heat-dome-warnings-record-breaking-temperatures-forecast-bc/"><as-dithered-image src="/assets/condo-design/heatdome1.jpg" alt="global news: 'Heat dome': warnings issued as potentially record-breaking temperatures forecast in B.C." cutoff=".6"></as-dithered-image></a>
+<a href="https://globalnews.ca/news/7975968/heat-dome-warnings-record-breaking-temperatures-forecast-bc/"><as-dithered-image src="/assets/condo-design/heatdome1.avif" alt="global news: 'Heat dome': warnings issued as potentially record-breaking temperatures forecast in B.C." cutoff=".6"></as-dithered-image></a>
 
 oh.
 
-<a href="https://www.ctvnews.ca/vancouver/article/highs-up-to-38-c-in-the-forecast-nearly-all-of-bc-under-heat-warnings/"><as-dithered-image src="/assets/condo-design/heatdome2.jpg" alt="CTV News: Highs up to 38C in the forecast; nearly all of B.C. under heat warnings" cutoff=".9"></as-dithered-image></a>
+<a href="https://www.ctvnews.ca/vancouver/article/highs-up-to-38-c-in-the-forecast-nearly-all-of-bc-under-heat-warnings/"><as-dithered-image src="/assets/condo-design/heatdome2.avif" alt="CTV News: Highs up to 38C in the forecast; nearly all of B.C. under heat warnings" cutoff=".9"></as-dithered-image></a>
 
 ohhhhhh.
 
-<a href="https://thetyee.ca/News/2023/07/17/2009-Heat-Wave-Lessons/"><as-dithered-image src="/assets/condo-design/heatdome3.jpg" alt="The Tyee: Few B.C. homes have air conditioners, and few if any B.C. municipalities have emergency response plans for heat waves" cutoff=".9"></as-dithered-image></a>
+<a href="https://thetyee.ca/News/2023/07/17/2009-Heat-Wave-Lessons/"><as-dithered-image src="/assets/condo-design/heatdome3.avif" alt="The Tyee: Few B.C. homes have air conditioners, and few if any B.C. municipalities have emergency response plans for heat waves" cutoff=".9"></as-dithered-image></a>
 
 ah.
 
@@ -90,13 +90,13 @@ everything must be sleek. there has to be a *view*. the kitchens need to look li
 
 whether or not any of it works is optional.
 
-<as-dithered-image src="/assets/condo-design/oven.jpg" alt="a sink with the faucet right in there and the water leaking; an intercom with a handwritten note reading DON'T WORK, CALL XX-XXXX; a gas stove setting a fire alarm off"></as-dithered-image>
+<as-dithered-image src="/assets/condo-design/oven.avif" alt="a sink with the faucet right in there and the water leaking; an intercom with a handwritten note reading DON'T WORK, CALL XX-XXXX; a gas stove setting a fire alarm off"></as-dithered-image>
 
 the sinks can be shallow, and leak. the "security" can break, constantly, leaving others stranded out of their own homes. ventilation from the very-instagrammable gas stoves can be non-existant, so long as it just looks like there's an oven fan that's supposed to work.
 
 why would the investor care? they don't experience the sink. they can't smell the smoke. all they see is what they see, in pictures.
 
-<as-dithered-image src="/assets/condo-design/tub1.jpg" alt="a cruddy little rectangular bathtub"></as-dithered-image>
+<as-dithered-image src="/assets/condo-design/tub1.avif" alt="a cruddy little rectangular bathtub"></as-dithered-image>
 
 that window is the funniest example, but i find that it's always the bathroom where this is most obvious. a good bathroom is, while sometimes homely, mostly ugly; the toilet is the boring shape human bodies need it to be, a good bathtub is a weird ridged shape, and a good showerhead comes with a long, extendable hose, because it's the one part of your house where you could not care about aesthetics before function.
 
@@ -106,13 +106,13 @@ but some of them go one step further, with the curtain.
 
 or lack, thereof.
 
-<as-dithered-image src="/assets/condo-design/tub2.jpg" alt="that tub, but now there's a stupid bit of glass poking out in place of a curtain"></as-dithered-image>
+<as-dithered-image src="/assets/condo-design/tub2.avif" alt="that tub, but now there's a stupid bit of glass poking out in place of a curtain"></as-dithered-image>
 
 in its place, they will bestow upon you one, singular, unmoving glass panel, covering only half the tub, and being permanently glued to the wall. usually, the walls would literally stick out, around the panel, making absolutely sure that you couldn't even put up a curtain rod if you wanted to.
 
 when you shower, do you keep your shower curtain halfway open? do you think there's a good, efficient idea in doing that?
 
-<as-dithered-image src="/assets/condo-design/tub3.jpg" alt="that tub, but now the water's leaking outside"></as-dithered-image>
+<as-dithered-image src="/assets/condo-design/tub3.avif" alt="that tub, but now the water's leaking outside"></as-dithered-image>
 
 of course you don't.
 
