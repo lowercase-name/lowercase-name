@@ -12,7 +12,7 @@ import mailObfuscation from 'astro-mail-obfuscation';
 
 export default defineConfig({
     site: 'https://lowercase.name',
-    integrations: [sitemap(), mailObfuscation()],
+    integrations: [sitemap()],
     fonts: [{
         provider: fontProviders.local(),
         name: "Recursive",
