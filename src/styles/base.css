@@ -277,7 +277,7 @@
 
         header {
             align-items: center;
-            column-gap: var(--row-gap-small);
+            column-gap: var(--1ch);
             display: grid;
             grid-column: deadzone;
             grid-template-columns: var(--3ch) auto auto var(--3ch);
@@ -725,7 +725,6 @@
         }
 
         >div {
-
 
             a[href]:has(as-dithered-image) {
                 block-size: min(40px, 10vi);
